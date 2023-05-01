@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<section>
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 login-form-1">
+                <div class="container text-center">
+                    <img  style="width: 70px;" th:src="@{/img/login.png}" alt="" >
+                </div>
+                <h3>Login</h3>
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Invalid Username and Password
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success">
+                    You have been logged out
+                </div>
+                <div th:if="${param.change}" class="alert alert-success">
+                    <p th:text="${param.change}"></p>
+                </div>
+                <form method="post" th:action="@{/dologin}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="password" class="form-control" name="password" placeholder="Your Password *" value="" />
+                    </div>
+                    <div class="form-group mt-4 text-center">
+                        <input type="submit" class="btnSubmit" value="Login" />
+                    </div>
+                    <div class="form-group mt-4">
+                        <a th:href="@{/signup}" class="ForgetPwd">Can't Have an Account? Register Here</a>
+                    </div>
+                    <div class="container mt-2">
+                       <a th:href="@{/forgot}" style="text-decoration: none;color: cornflowerblue" >Forgot Password? Click here</a>
+                    </div>
+                </form>
+            </div>
+</section>
+</body>
+</html>
